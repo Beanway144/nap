@@ -1,1 +1,2 @@
-# nap
+# NAP - No Automorphisms Please!
+This is a game about graph symmetry, which you can play [here](https://beanway.me/NAP)! The goal is to add nodes and edges to the given graph to break all of its automorphisms. In other words, the goal is to give the graph a trivial automorphism group. The interface is [index.html](https://github.com/Beanway144/nap/edit/main/index.html) and the engine can be found in [automorphismgame.js](https://github.com/Beanway144/nap/edit/main/automorphismgame.js).
