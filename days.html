@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NAP — Play a Previous Puzzle</title>
+    <link rel="icon" href="../images/bean-crop.gif" type="image/icon type">
+    <link rel="stylesheet" href="automorphism.css">
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+    <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+</head>
+
+<body>
+    <h1>NAP — Play a Previous Puzzle</h1>
+    <button class="open-button" onclick="window.location.href='index.html'">Play Today's Puzzle</button>
+    <select id="daySelect" onchange='daySelectChange(this.value);'>
+        <option selected="true" disabled="disabled">Select a Puzzle</option>
+    </select>
+    <hr>
+    <button class="open-button" onclick="openForm()">How To Play</button>
+    <div class="form-popup" id="myForm">
+        <form action="/action_page.php" class="form-container">
+            <h1>What is NAP?</h1>
+            NAP stands for No Automorphisms, Please!<br />The goal is to add edges and nodes to the <a
+                href="https://en.wikipedia.org/wiki/Graph_theory">graph</a> to break all symmetries. The fewer added
+            edges and
+            nodes, the better! There's a new puzzle every day.
+            <h2>What counts as a symmetry?</h2>
+            In this case, a symmetry is any 'relabeling' of the nodes that maintains the structure of the graph. If we
+            take
+            some node, we can call the set of all nodes connected to it via some edge its neighbors. Then a symmetry of
+            a
+            graph shuffles some nodes around, but makes sure each node has the same neighbors. Such a symmetry is called
+            an
+            <i>automorphism</i>.<br />
+            For example, we can label the following graph and its one symmetry.
+            <img style="width: 50%" src="./graphAutEx1.png" alt="A graph G, with nodes labeled 1-5."><img
+                style="width: 50%" src="./graphAutEx2.png" alt="An automorphism of G, with nodes 1 and 3 switched.">
+            Sometimes, the automorphisms look like the standard symmetry we're used to—reflections and rotations—like
+            how the one above looks like a reflection. But often
+            it can be more subtle and not look like any geometric symmetry. For example, the following is an
+            automorphism that doesn't conform to our standard notion of reflection or rotation:<br />
+            <img style="width: 50%" src="./graphNonStandardEx1.png" alt="An arbitrary graph"><img style="width: 50%"
+                src="./graphNonStandardEx2.png" alt="Same arbitrary graph but rotated">
+            Note that the actual physical movement of the graph doesn't affect its symmetries, so the following two
+            graphs are
+            the same:<br />
+            <img style="width: 50%" src="./GraphNonAutEx1.png" alt="An arbitrary graph"><img style="width: 50%"
+                src="./GraphNonAutEx2.png" alt="Same arbitrary graph but rotated">
+            so they have the same symmetries.<br />
+            This is an example of a graph with no automorphisms (a winning graph!): <br />
+            <img style="width:50%" src="./assymetricgraph.png" alt="an assymetric graph, ie no automorhpisms" />
+            <h2>Manipulating the graph</h2>
+            Click the <b>Edit</b> button, then click <b>Add Node</b> and click anywhere near the graph to add a node. To
+            add
+            an edge, click <b>Add Edge</b>, then drag click your cursor from one node to another. When you think you
+            have a
+            graph with no symmetries, click <b>Check Symmetries</b>! You get 1 point for each edge
+            added and 2 points for each node added. Your goal is to minimize your score.<br />
+            If a node leaves the screen by accident, you can zoom out (or in) with the navigation buttons.
+            <h2>More about graph symmetries</h2>
+            In fancier terms, the goal of this game is to find the minimal assymetric graph with the given graph as a
+            subgraph; that is, the smallest graph with a trivial automorphism group. The trivial automorphism is the
+            identity,
+            so when the game says there are 2 automorphisms, for example, there is, as we defined it above, only one
+            symmetry.<br /><br />
+            The computation is powered by <a href="https://sagecell.sagemath.org/">SageCell</a> and the graph interface
+            is powered by <a href="https://visjs.org/">vis.js</a>.
+            Code can be found on my <a href="https://github.com/Beanway144/nap">Github</a>. Pull requests welcome! :)
+            <br />
+            Feedback is also welcome: feedback [ at ] beanway [ dot ] me<br />NAP 1.3.0
+            <button type="button" class="btn cancel" onclick="closeForm()">Got It!</button>
+        </form>
+        <button type="button" onclick="closeForm()" id="x">&times;</button>
+    </div>
+    <div id="graphstring-container">
+        <textarea id="graphstring"></textarea>
+        <div id="mycell">
+            <script id="cellscript" type="text/x-sage">
+       </script>
+        </div>
+        <div id="output-container">
+            <span id="output"></span>
+            <button type="button" id="copyButton" onclick="copyEvent('output')"><img src="../images/icons8-copy-24.png"
+                    alt="copy button" /></button>
+            <!--copy button: https://icons8.com/icons/set/copy-->
+        </div>
+    </div>
+    <div style="width: 50%; height: 400px;" id="mynetwork"></div>
+    <!-- <footer>
+    Powered by <a href="https://sagecell.sagemath.org/">SageMathCell</a> and <a href="https://visjs.org/">vis.js</a>.
+  </footer> -->
+    <script src="automorphismgame.js"></script>
+
+    <script>document.onload = initializePuzzle("0")</script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NAP Sandbox — Automorphism Checker</title>
+  <link rel="icon" href="../../images/bean-crop.gif" type="image/icon type">
+  <link rel="stylesheet" href="../automorphism.css">
+  <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+  <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+</head>
+
+<body>
+  <h1>NAP Sandbox</h1>
+
+  <div>
+    <button class="open-button" onclick="window.location.href='../index.html'">Play Today's Puzzle</button>
+    <textarea id="graphstring"></textarea>
+    <div id="mycell">
+      <script id="cellscript" type="text/x-sage">
+       </script>
+  </div id="output-container">
+    <span id="output"></span>
+  </div>
+  <div style="width: 50%; height: 400px;" id="mynetwork"></div>
+  <!-- <footer>
+    Powered by <a href="https://sagecell.sagemath.org/">SageMathCell</a> and <a href="https://visjs.org/">vis.js</a>.
+  </footer> -->
+  <script src="./automorphismgame.js"></script>
+
+  <script>document.onload = initializePuzzle()</script>
+</body>
+
+</html>
